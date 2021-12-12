@@ -57,7 +57,7 @@ public class UserThread extends Thread {
         if (server.hasUsers()) {
             writer.println("Connected users: " + server.getUserNames());
         } else {
-            writer.println("No other users connected");
+            writer.println("You First\nWhat is Your Name?");
         }
     }
 
