@@ -7,7 +7,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 public class ChatServer {
-    private int port;
+    private int port = 3443;
     private Set<String> userNames = new HashSet<>();
     private Set<UserThread> userThreads = new HashSet<>();
 
@@ -18,7 +18,7 @@ public class ChatServer {
     public void execute() {
         try (ServerSocket serverSocket = new ServerSocket(port)) {
 
-            System.out.println("Chat Server is listening on port " + port);
+            System.out.println("Chat Server is listening on port: " + port);
 
             while (true) {
                 Socket socket = serverSocket.accept();
@@ -27,7 +27,6 @@ public class ChatServer {
                 UserThread newUser = new UserThread(socket, this);
                 userThreads.add(newUser);
                 newUser.start();
-
             }
 
         } catch (IOException ex) {
@@ -37,13 +36,13 @@ public class ChatServer {
     }
 
     public static void main(String[] args) {
-        if (args.length < 1) {
-            System.out.println("Syntax: java ChatServer <port-number>");
-            System.exit(0);
-        }
+//        if (args.length < 1) {
+//            System.out.println("Syntax: java ChatServer <port-number>");
+//            System.exit(0);
+//        }
 
-        int port = Integer.parseInt(args[0]);
-
+        //int port = Integer.parseInt(args[0]);
+        int port = 3443;
         ChatServer server = new ChatServer(port);
         server.execute();
     }
